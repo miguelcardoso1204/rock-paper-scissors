@@ -37,9 +37,8 @@
 
                 if (playerSelection ==="rock" || playerSelection ==="paper" || playerSelection ==="scissors") {
                     validResponse == true;
-                    break;
-                } else if (numberAttempts == 4){
-                    
+                    return playerSelection;
+                } else if (numberAttempts === 4){
                     numberAttempts++;
                 } else {
                     console.log(`You entered ${numberAttempts + 1} unexpected answer(s) (max. 5), please try again\n`);
@@ -51,8 +50,42 @@
                 gameAborted = true;
             }
         }
-        
-        getPlayerChoice();
+
+        function playRound(playerSelection, computerSelection) {
+            switch (playerSelection) {
+                case `rock`:
+                    if (computerSelection === `scissors`) {
+                        return `win`;
+                    } else if(computerSelection === `paper`) {
+                        return `loose`;
+                    } else {
+                        return `tie`;
+                    }
+                    break;
+                case `paper`:
+                    if (computerSelection === `rock`) {
+                        return `win`;
+                    } else if(computerSelection === `scissors`) {
+                        return `loose`;
+                    } else {
+                        return `tie`;
+                    }
+                    break;
+                case `scissors`:
+                    if (computerSelection === `paper`) {
+                        return `win`;
+                    } else if(computerSelection === `rock`) {
+                        return `loose`;
+                    } else {
+                        return `tie`;
+                    }
+                    break;
+            }
+        }
+
+        console.log(playRound(`rock`,`rock`));
+
+
         
 
         //Determine the winner
