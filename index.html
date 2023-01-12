@@ -25,7 +25,11 @@
                 return `scissors`;
             }
         }
+
+
         //Get player choice (Rock, Paper, or Scissors) and validate his response
+
+
         function getPlayerChoice() {
             let validResponse = false
             let numberAttempts = 0;
@@ -51,39 +55,76 @@
             }
         }
 
+        //Play a single round of Rock Paper Scissors
+
         function playRound(playerSelection, computerSelection) {
             switch (playerSelection) {
                 case `rock`:
                     if (computerSelection === `scissors`) {
+                        console.log("You won! Rock beats scissors");
                         return `win`;
                     } else if(computerSelection === `paper`) {
+                        console.log("You lost! Paper beats rock");
                         return `loose`;
                     } else {
+                        console.log("You tied");
                         return `tie`;
                     }
                     break;
                 case `paper`:
                     if (computerSelection === `rock`) {
+                        console.log("You won! Paper beats rock");
                         return `win`;
                     } else if(computerSelection === `scissors`) {
+                        console.log("You lost! Scissors beats paper");
                         return `loose`;
                     } else {
+                        console.log("You tied");
                         return `tie`;
                     }
                     break;
                 case `scissors`:
                     if (computerSelection === `paper`) {
+                        console.log("You won! Scissors beats paper");
                         return `win`;
                     } else if(computerSelection === `rock`) {
+                        console.log("You lost! Rock beats scissors");
                         return `loose`;
                     } else {
+                        console.log("You tied");
                         return `tie`;
                     }
                     break;
             }
         }
 
-        console.log(playRound(`rock`,`rock`));
+        //Create a 5 round format, and keep track of both player and computer scores
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            let roundResult = undefined;
+
+            for (let i = 0; i < 5; i++) {
+                let roundResult = playRound(getComputerChoice(), getPlayerChoice());
+                if (roundResult == `win`) {
+                    playerScore++;
+                } else if (roundResult == `loose`) {
+                    computerScore++;
+                }
+                console.log(`Score: You ${playerScore} - ${computerScore} Computer`);
+            }
+
+            if (playerScore > computerScore) {
+                console.log("You won the game! Good job!");
+            } else if (computerScore > playerScore){
+                console.log("You lost the game! Better luck next time!");
+            } else {
+                console.log("The game was a tie!")
+            }
+        }
+
+        game();
 
 
         
