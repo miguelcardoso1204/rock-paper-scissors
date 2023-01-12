@@ -8,7 +8,27 @@
 </head>
 <body>
     <script>
+        //Generate a random computer choice (rock, paper or scissors)
+        //1 == Rock
+        //2 == Paper
+        //3 == Scissors
+        function getComputerChoice() {
+            let computerChoice = Math.floor(Math.random() * 3) + 1;
+
+            if (computerChoice === 1) {
+                return `Rock`;
+            } else if (computerChoice === 2) {
+                return `Paper`;
+            } else if (computerChoice === 3) {
+                return `Scissors`;
+            }
+        }
+        //Get player choice (Rock, Paper, or Scissors)
         
+        //Determine the winner
+        //Output result of the round
+        //Save score
+        //Output result of the game
     </script>
 </body>
 </html>
