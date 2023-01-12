@@ -12,19 +12,49 @@
         //1 == Rock
         //2 == Paper
         //3 == Scissors
+        let gameAborted = false;
+
         function getComputerChoice() {
             let computerChoice = Math.floor(Math.random() * 3) + 1;
 
             if (computerChoice === 1) {
-                return `Rock`;
+                return `rock`;
             } else if (computerChoice === 2) {
-                return `Paper`;
+                return `paper`;
             } else if (computerChoice === 3) {
-                return `Scissors`;
+                return `scissors`;
             }
         }
-        //Get player choice (Rock, Paper, or Scissors)
+        //Get player choice (Rock, Paper, or Scissors) and validate his response
+        function getPlayerChoice() {
+            let validResponse = false
+            let numberAttempts = 0;
+
+            while (numberAttempts < 5) {
+                let playerSelection = prompt("Type your selection (Rock, Paper, Scissors): ")
+
+                playerSelection = playerSelection.toLowerCase();
+
+                if (playerSelection ==="rock" || playerSelection ==="paper" || playerSelection ==="scissors") {
+                    validResponse == true;
+                    break;
+                } else if (numberAttempts == 4){
+                    
+                    numberAttempts++;
+                } else {
+                    console.log(`You entered ${numberAttempts + 1} unexpected answer(s) (max. 5), please try again\n`);
+                    numberAttempts++;
+                }
+            }
+            if (numberAttempts === 5) {
+                console.log(`You typed an invalid answer 5 times. Game aborting...`);
+                gameAborted = true;
+            }
+        }
         
+        getPlayerChoice();
+        
+
         //Determine the winner
         //Output result of the round
         //Save score
