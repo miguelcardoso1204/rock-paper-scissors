@@ -10,26 +10,38 @@
     <h1>Rock Paper Scissors</h1>
     <div id="roundPlay"></div>
     <div id="buttons">
-        <button type="button" id="rock" value="rock"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/rock_1faa8.png"></button>
-        <button type="button" id="paper" value="paper"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/page-with-curl_1f4c3.png"></button>
-        <button type="button" id="scissors" value="scissors"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/scissors_2702-fe0f.png"></button>
+        <button class="playerChoice" type="button" id="rock" value="rock"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/rock_1faa8.png"></button>
+        <button class="playerChoice" type="button" id="paper" value="paper"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/page-with-curl_1f4c3.png"></button>
+        <button class="playerChoice" type="button" id="scissors" value="scissors"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/scissors_2702-fe0f.png"></button>
     </div>
 
     <script>
+
+        let playerChoice = undefined;
+
+        //Add event listeners to button choices(Rock, Paper, Scissors)
+
+        const buttons = document.querySelectorAll('.playerChoice');
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', getPlayerChoice);
+            button.addEventListener('click', playRound);
+        });
+
+        
+
+
+
         //Generate a random computer choice (rock, paper or scissors)
-        //1 == Rock
-        //2 == Paper
-        //3 == Scissors
-        let gameAborted = false;
 
         function getComputerChoice() {
-            let computerChoice = Math.floor(Math.random() * 3) + 1;
+            let computerRandom = Math.floor(Math.random() * 3) + 1;
 
-            if (computerChoice === 1) {
+            if (computerRandom === 1) {
                 return `rock`;
-            } else if (computerChoice === 2) {
+            } else if (computerRandom === 2) {
                 return `paper`;
-            } else if (computerChoice === 3) {
+            } else if (computerRandom === 3) {
                 return `scissors`;
             }
         }
@@ -37,41 +49,21 @@
 
         //Get player choice (Rock, Paper, or Scissors) and validate his response
 
-
-        function getPlayerChoice() {
-            let validResponse = false
-            let numberAttempts = 0;
-
-            while (numberAttempts < 5) {
-                let playerSelection = prompt("Type your selection (Rock, Paper, Scissors): ")
-
-                playerSelection = playerSelection.toLowerCase();
-
-                if (playerSelection ==="rock" || playerSelection ==="paper" || playerSelection ==="scissors") {
-                    validResponse == true;
-                    return playerSelection;
-                } else if (numberAttempts === 4){
-                    numberAttempts++;
-                } else {
-                    console.log(`You entered ${numberAttempts + 1} unexpected answer(s) (max. 5), please try again\n`);
-                    numberAttempts++;
-                }
-            }
-            if (numberAttempts === 5) {
-                console.log(`You typed an invalid answer 5 times. Game aborting...`);
-                gameAborted = true;
-            }
+        function getPlayerChoice(e) {
+            playerChoice = this.value;
         }
 
         //Play a single round of Rock Paper Scissors
 
-        function playRound(playerSelection, computerSelection) {
-            switch (playerSelection) {
+        function playRound() {
+            let computerChoice = getComputerChoice();
+
+            switch (playerChoice) {
                 case `rock`:
-                    if (computerSelection === `scissors`) {
+                    if (computerChoice === `scissors`) {
                         console.log("You won! Rock beats scissors");
                         return `win`;
-                    } else if(computerSelection === `paper`) {
+                    } else if(computerChoice === `paper`) {
                         console.log("You lost! Paper beats rock");
                         return `loose`;
                     } else {
@@ -80,10 +72,10 @@
                     }
                     break;
                 case `paper`:
-                    if (computerSelection === `rock`) {
+                    if (computerChoice === `rock`) {
                         console.log("You won! Paper beats rock");
                         return `win`;
-                    } else if(computerSelection === `scissors`) {
+                    } else if(computerChoice === `scissors`) {
                         console.log("You lost! Scissors beats paper");
                         return `loose`;
                     } else {
@@ -92,10 +84,10 @@
                     }
                     break;
                 case `scissors`:
-                    if (computerSelection === `paper`) {
+                    if (computerChoice === `paper`) {
                         console.log("You won! Scissors beats paper");
                         return `win`;
-                    } else if(computerSelection === `rock`) {
+                    } else if(computerChoice === `rock`) {
                         console.log("You lost! Rock beats scissors");
                         return `loose`;
                     } else {
@@ -105,6 +97,8 @@
                     break;
             }
         }
+
+        
 
         //Create a 5 round format, keep track of both player and computer scores and present the game result
 
@@ -134,7 +128,7 @@
 
         /* game(); */
 
-        playRound(getComputerChoice(), getPlayerChoice());
+        /* playRound(getComputerChoice(), getPlayerChoice()); */
 
     </script>
 </body>
