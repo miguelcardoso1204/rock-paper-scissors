@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Rock Paper Scissors</h1>
+    <div id="roundPlay"></div>
+    <div id="buttons">
+        <button type="button" id="rock" value="rock"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/rock_1faa8.png"></button>
+        <button type="button" id="paper" value="paper"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/page-with-curl_1f4c3.png"></button>
+        <button type="button" id="scissors" value="scissors"><img src="https://em-content.zobj.net/thumbs/160/openmoji/338/scissors_2702-fe0f.png"></button>
+    </div>
+
     <script>
         //Generate a random computer choice (rock, paper or scissors)
         //1 == Rock
@@ -98,9 +106,9 @@
             }
         }
 
-        //Create a 5 round format, and keep track of both player and computer scores
+        //Create a 5 round format, keep track of both player and computer scores and present the game result
 
-        function game() {
+        /* function game() {
             let playerScore = 0;
             let computerScore = 0;
             let roundResult = undefined;
@@ -122,17 +130,12 @@
             } else {
                 console.log("The game was a tie!")
             }
-        }
+        } */
 
-        game();
+        /* game(); */
 
+        playRound(getComputerChoice(), getPlayerChoice());
 
-        
-
-        //Determine the winner
-        //Output result of the round
-        //Save score
-        //Output result of the game
     </script>
 </body>
 </html>
